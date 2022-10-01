@@ -12,8 +12,12 @@ public class PartOne{
      * @return true if the input number is the sum of three consecutive positive integers, otherwise false
      */
     public static boolean checkForRunOfThree(int number){
-        return true;
+        if(number<=3)return false;
+        if (number % 3 == 0)return true;
+       return false;
     }
+
+
 
     /** Finds the FIRST of the three consecutive positive integers that sum to a given number or
      *  indicates that the number is not the sum of three consecutive positive integers.
@@ -29,7 +33,15 @@ public class PartOne{
      *         number is not the sum of three consecutive positive integers
      */
     public static int runOfThreeStartingValue(int number){
-        return 0;
+        for(int i=1;i<=number-2;i++){
+
+            int sum = i + i+1 + i+2;
+            if(sum == number)return i;
+
+        }
+
+        return -1;
+
     }
 
     /** finds the first location of the maximal value in a list of numbers.
@@ -45,7 +57,20 @@ public class PartOne{
      *  @return the index value of the first instance of the maximal value in the input data
      */
     public static int peakLocation(int[] data){
-        return -1;
+        int n  =data.length;
+        int max = Integer.MIN_VALUE;
+        int ind = -1;
+        for(int i=0;i<data.length;i++){
+
+            if(data[i] > max){
+                max = data[i];
+                ind = i;
+
+            }
+        }
+
+        return ind;
+
     }
 
 
