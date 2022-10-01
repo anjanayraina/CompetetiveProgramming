@@ -22,26 +22,27 @@ public class PartTwo{
      *         is the natural ordering (increasing order by value), and the ordering of the inside arrays
      *         is by increasing length.
      */
-    public static int[][] runs(int number, int start, int end){
-//        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-//        for(int i=start;i<=end;i++){
-//            ArrayList<Integer> temp = new ArrayList<>();
-//            for(int j = 1;j<number;j++){
-//                temp.add(1);
-//
-//            }
-//
-//            res.add(temp);
-//        }
-//
-//        for(int i=0;i<res.size();i++){
-//            for(int j=0;j<res.get(i).size();j++){
-//
-//
-//            }
-//        }
+    public static ArrayList<ArrayList<Integer>> runs(int number, int start, int end){
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        for(int i=start;i<=end;i++){
 
-        return null;
+            for(int j = 1;j<=number;j++){
+                int sum =0 ;
+                ArrayList<Integer> temp = new ArrayList<>();
+                for(int k = j;k<j+i;k++){
+                    sum+=k;
+                    temp.add(k);
+
+                }
+                if(sum == number)res.add(temp);
+
+            }
+
+
+        }
+
+
+        return res;
     }
 
     public static int [] toIntArray(ArrayList<Integer> a){
@@ -107,6 +108,21 @@ public class PartTwo{
         return toIntArray(res);
     }
 
+
+//    public static String  descentChecker(int data[][] , int i , int  j , int  n , int m ){
+//
+//        String res = "None";
+//        int resI = i ;
+//        int resJ = j;
+//
+//        if(i >=1 ){
+//
+//            if(data[resI][resJ] > )
+//        }
+//
+//
+//
+//    }
     /** find a local minimum position in a 2-d grid of numbers using a steepest descent
      * approach finds the location.
      *
@@ -143,6 +159,7 @@ public class PartTwo{
      *  @return an array [row,col] of size two that stores the row and column of the
      *          local minimum found (using the rules described above)
      */
+
     public static int[] findMin(int[][] data, int startingRow, int startingColumn){
         return null;
     }
@@ -167,7 +184,11 @@ public class PartTwo{
 //            System.out.print(i + "   ");
 //        }
 //        System.out.println();
+        for(ArrayList<Integer>  i : runs(125 , 1 , 8)){
 
+            for(int  j : i )System.out.print(j +"  ");
+            System.out.println();
+        }
 
 
     }
