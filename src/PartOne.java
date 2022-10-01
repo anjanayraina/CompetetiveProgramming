@@ -57,7 +57,7 @@ public class PartOne{
      *  @return the index value of the first instance of the maximal value in the input data
      */
     public static int peakLocation(int[] data){
-        int n  =data.length;
+
         int max = Integer.MIN_VALUE;
         int ind = -1;
         for(int i=0;i<data.length;i++){

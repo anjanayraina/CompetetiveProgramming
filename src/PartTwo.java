@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PartTwo{
 
@@ -21,7 +23,36 @@ public class PartTwo{
      *         is by increasing length.
      */
     public static int[][] runs(int number, int start, int end){
+//        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+//        for(int i=start;i<=end;i++){
+//            ArrayList<Integer> temp = new ArrayList<>();
+//            for(int j = 1;j<number;j++){
+//                temp.add(1);
+//
+//            }
+//
+//            res.add(temp);
+//        }
+//
+//        for(int i=0;i<res.size();i++){
+//            for(int j=0;j<res.get(i).size();j++){
+//
+//
+//            }
+//        }
+
         return null;
+    }
+
+    public static int [] toIntArray(ArrayList<Integer> a){
+
+        int res[] = new int[a.size()];
+        for(int i=0;i<a.size();i++){
+
+            res[i] = a.get(i);
+//            System.out.println(res[i]);
+        }
+        return res;
     }
 
     /** finds the locations of all local maximum values in a list of numbers.
@@ -42,8 +73,38 @@ public class PartTwo{
      *  @return an array storing the locations (index values) of all local maxima in the input array.
      *          The size of this array will match the number of local maxima.
      */
+
+
     public static int[] peaks(int[] data){
-        return null;
+        ArrayList<Integer> res = new ArrayList<>();
+
+        int  n =data.length;
+        if(n == 1){
+
+            res.add(data[0]);
+            return toIntArray(res);
+        }
+        for(int i =0;i<n;i++){
+
+            if(i == 0){
+
+                if(data[i] > data[i+1])res.add(i);
+            }
+
+            else if(i == n-1){
+                if(data[i] > data[i-1])res.add(i);
+
+            }
+            else{
+
+                if(data[i] > data[i-1] && data[i] > data[i+1])res.add(i);
+            }
+
+
+
+        }
+//        for(int i : res)System.out.println(i);
+        return toIntArray(res);
     }
 
     /** find a local minimum position in a 2-d grid of numbers using a steepest descent
@@ -89,6 +150,26 @@ public class PartTwo{
     /* I might be a program! */
     public static void main(String[] args){
         // use this for testing your methods if you wish...
+
+        Scanner s = new Scanner(System.in);
+        //Testing for Peaks function
+//        System.out.println("Enter the Number of elements");
+//        int peaksN =s.nextInt();
+//        System.out.println("Enter the Elements :");
+//        int peaksArray[]  = new int[peaksN];
+//
+//        for(int  i =0;i<peaksN;i++){
+//
+//            peaksArray[i] = s.nextInt();
+//        }
+//        for(int  i : peaks(peaksArray)){
+//
+//            System.out.print(i + "   ");
+//        }
+//        System.out.println();
+
+
+
     }
 
 }
