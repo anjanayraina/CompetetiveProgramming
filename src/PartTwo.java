@@ -169,21 +169,24 @@ public class PartTwo{
         // use this for testing your methods if you wish...
 
         Scanner s = new Scanner(System.in);
-        //Testing for Peaks function
-//        System.out.println("Enter the Number of elements");
-//        int peaksN =s.nextInt();
-//        System.out.println("Enter the Elements :");
-//        int peaksArray[]  = new int[peaksN];
-//
-//        for(int  i =0;i<peaksN;i++){
-//
-//            peaksArray[i] = s.nextInt();
-//        }
-//        for(int  i : peaks(peaksArray)){
-//
-//            System.out.print(i + "   ");
-//        }
-//        System.out.println();
+        System.out.println("Testing for Peaks function");
+        System.out.println("Enter the Number of elements");
+        int peaksN =s.nextInt();
+        System.out.println("Enter the Elements :");
+        int peaksArray[]  = new int[peaksN];
+
+        for(int  i =0;i<peaksN;i++){
+
+            peaksArray[i] = s.nextInt();
+        }
+        for(int  i : peaks(peaksArray)){
+
+            System.out.print(i + "   ");
+        }
+        System.out.println();
+
+        System.out.println("Testing for Runs");
+
         for(ArrayList<Integer>  i : runs(125 , 1 , 8)){
 
             for(int  j : i )System.out.print(j +"  ");
