@@ -6,6 +6,19 @@ import java.util.Scanner;
 
 public class LabProgram {
 
+    class FoodItem{
+
+        String name;
+        String cateogry;
+        String description;
+
+        FoodItem(String name , String cateogry , String description){
+
+            this.name = name;
+            this.cateogry  = cateogry;
+            this.description =description;
+        }
+    }
     public static void main(String args[]) throws FileNotFoundException {
 
 
@@ -15,8 +28,9 @@ public class LabProgram {
         HashMap<String  , ArrayList<String >> map  = new HashMap<>();
         while(snc.hasNext()){
 
-            String temp  = snc.nextLine();
-
+            String []temp  = snc.nextLine().split("\t");
+            if(!map.containsKey(temp[0]))map.put(temp[0] , new ArrayList<String>());
+            if(temp[temp.length - 1].equals("Not available"))continue;
 
         }
     }
