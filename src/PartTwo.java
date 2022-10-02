@@ -123,6 +123,23 @@ public class PartTwo{
 //
 //
 //    }
+
+    static class   wrapper {
+
+        int x;
+        int y;
+        int val;
+        String direction;
+        wrapper(int x , int y , int val, String direction) {
+
+            this.x = x;
+            this.y = y;
+            this.val = val;
+            this.direction = direction;
+
+        }
+
+    }
     /** find a local minimum position in a 2-d grid of numbers using a steepest descent
      * approach finds the location.
      *
@@ -160,8 +177,55 @@ public class PartTwo{
      *          local minimum found (using the rules described above)
      */
 
+
+
+
     public static int[] findMin(int[][] data, int startingRow, int startingColumn){
-        return null;
+        wrapper head = new wrapper(startingRow , startingColumn , data[startingRow][startingColumn] , "None");
+        wrapper temp  = head;
+        int n  = data.length;
+        int m = data[0].length;
+
+        if(startingRow >0){
+
+            if(data[startingRow-1][startingColumn] < temp.val){
+
+                temp = new wrapper(startingRow -1  , startingColumn , data[startingRow-1][startingColumn] , "UP");
+            }
+
+
+        }
+
+         if(startingColumn<m-1){
+            if(data[startingRow][startingColumn + 1] < temp.val){
+
+                temp = new wrapper(startingRow  , startingColumn+1 , data[startingRow][startingColumn+1] , "RIGHT");
+            }
+
+        }
+
+         if(startingRow < n-1){
+            if(data[startingRow+1][startingColumn] < temp.val){
+
+                temp = new wrapper(startingRow +1  , startingColumn , data[startingRow+1][startingColumn] , "DOWN");
+            }
+
+        }
+
+         if (startingColumn > 0){
+
+            if(data[startingRow ][startingColumn-1] < temp.val){
+
+                temp = new wrapper(startingRow   , startingColumn-1 , data[startingRow][startingColumn-1] , "LEFT");
+            }
+        }
+        if(temp == head){
+
+            return new int[]{startingRow  , startingColumn};
+        }
+
+        return findMin(data,  temp.x  ,temp.y);
+
     }
 
     /* I might be a program! */
@@ -192,6 +256,29 @@ public class PartTwo{
             for(int  j : i )System.out.print(j +"  ");
             System.out.println();
         }
+
+        System.out.println("Testing findMin function !!");
+
+        System.out.println("Enter the rows : ");
+        int row = s.nextInt();
+        System.out.println("Enter the columns: ");
+        int col = s.nextInt();
+
+        System.out.println("Enter the starting row :");
+        int startRow = s.nextInt();
+        System.out.println("Enter the starting column :");
+        int startCol = s.nextInt();
+        int a [][ ] = new int[row][col];
+        System.out.println("Enter the data : ");
+        for(int  i =0;i<row;i++){
+
+            for(int j=0;j<col;j++){
+
+                a[i][j] = s.nextInt();
+            }
+        }
+
+        for(int  i  : findMin(a , startRow , startCol))System.out.println(i);
 
 
     }
