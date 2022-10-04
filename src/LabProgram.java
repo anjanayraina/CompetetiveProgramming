@@ -1,12 +1,14 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class LabProgram {
 
-    class FoodItem{
+    static class FoodItem{
 
         String name;
         String cateogry;
@@ -19,19 +21,34 @@ public class LabProgram {
             this.description =description;
         }
     }
-    public static void main(String args[]) throws FileNotFoundException {
+    public static void main(String args[]) throws IOException {
 
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Enter the name of the file :");
+        String fileName = scnr.nextLine();
+        InputStream input = LabProgram.class.getResourceAsStream("/"+fileName);
+        InputStreamReader inputReader = new InputStreamReader(input);
 
-        File file = new File("C:\\Users\\anjan\\IdeaProjects\\CompetetiveProgramming\\src\\food.txt");
-        // add the path of the food file that you saved in your system in the file class above
-        Scanner snc = new Scanner(file);
-        HashMap<String  , ArrayList<String >> map  = new HashMap<>();
-        while(snc.hasNext()){
+        BufferedReader br = new BufferedReader(inputReader);
+        String line = null;
+        HashMap<String  , ArrayList<FoodItem>> map  = new HashMap<>();
+        try {
+            while((line = br.readLine())!=null){
+                String []temp  = line.split("\t");
+                if(!map.containsKey(temp[0]))map.put(temp[0] , new ArrayList<FoodItem>());
+                if(temp[temp.length - 1].equals("Not available"))continue;
+                map.get(temp[0]).add(new FoodItem(temp[1] , temp[0] , temp[2]));
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
-            String []temp  = snc.nextLine().split("\t");
-            if(!map.containsKey(temp[0]))map.put(temp[0] , new ArrayList<String>());
-            if(temp[temp.length - 1].equals("Not available"))continue;
+        for(String food : map.keySet()){
 
+            for(FoodItem foodItem : map.get(food)){
+
+                System.out.println(String.format("%s (%s) -- %s" , foodItem.name , foodItem.cateogry , foodItem.description));
+            }
         }
     }
 }
