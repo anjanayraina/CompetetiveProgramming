@@ -31,24 +31,24 @@ public class LabProgram {
 
         BufferedReader br = new BufferedReader(inputReader);
         String line = null;
-        HashMap<String  , ArrayList<FoodItem>> map  = new HashMap<>();
+        ArrayList<FoodItem> map  = new ArrayList<>();
         try {
             while((line = br.readLine())!=null){
                 String []temp  = line.split("\t");
-                if(!map.containsKey(temp[0]))map.put(temp[0] , new ArrayList<FoodItem>());
+
                 if(temp[temp.length - 1].equals("Not available"))continue;
-                map.get(temp[0]).add(new FoodItem(temp[1] , temp[0] , temp[2]));
+                map.add(new FoodItem(temp[1] , temp[0] , temp[2]));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        for(String food : map.keySet()){
 
-            for(FoodItem foodItem : map.get(food)){
+
+            for(FoodItem foodItem : map){
 
                 System.out.println(String.format("%s (%s) -- %s" , foodItem.name , foodItem.cateogry , foodItem.description));
             }
-        }
+
     }
 }
